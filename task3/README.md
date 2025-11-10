@@ -1,20 +1,41 @@
-Run this with phyton
-Purpose is to store list task from a JSON file
+# Task 3 - Echanced PKMS 
 
-# Task 1 – Prototype Task Manager
+This version adds the ability to edit, delete, and mark goals
 
-This is a simple command-line task manager that stores and retrieves tasks from a JSON file.
+How to run
+1. Have python 3 installed
+2. open terminal and open folder task3
+3. run
+   bash
+   python3 main.py
+4. Use commands
+Add for creating a new goal
+List all goals
+Edit goal name
+Delete remove a goal 
+Complete mark it as done
+Exit close
 
-## How to run
-1. Make sure you have Python installed.
-2. Open your terminal and navigate to this folder.
-3. Run:
-python main.py
-   
-5. Use these commands:
-- `add` to create a task
-- `list` to view all tasks
-- `search` to find a task
-- `exit` to close the app
+5. Scroll down, add commit massage
 
-All tasks are saved inside `tasks.json`.
+   Updated ReadMe.md for task3
+
+6. Click **Commit changes**.
+
+Step 2 — Edit main.py on GitHub
+
+1. In the task3 folder, click main.py.
+2. Click the pencil icon .
+3. Delete all the old code and **paste in the enhanced Task 3 code I gave earlier (with add/edit/delete/complete features).  
+4. Scroll down, add a commit message like
+Updated main.py for task3 add edit/delete/complete
+
+5. Commit changes
+
+Now go back to Terminal (still on your Mac) to **run the updated code**:
+
+bash
+cd ~/Desktop/csc-299-project/task3
+python3 main.py
+
+
