@@ -1,63 +1,105 @@
 import json
 import os
 
-TASKS_FILE = "tasks.json"
+DATA_FILE = "tasks.json"
 
 def load_tasks():
-    if not os.path.exists(TASKS_FILE):
+    if not os.path.exists(DATA_FILE):
         return []
-    with open(TASKS_FILE, "r") as f:
-        return json.load(f)
+    with open(DATA_FILE, "r") as f:
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            return []
 
 def save_tasks(tasks):
-    with open(TASKS_FILE, "w") as f:
+    with open(DATA_FILE, "w") as f:
         json.dump(tasks, f, indent=4)
 
-def add_task():
-    title = input("Enter task title: ")
-    task = {"title": title}
-    tasks = load_tasks()
+def add_task(tasks):
+    name = input("Enter task name: ").strip()
+    if not name:
+        print("Task name cannot be empty.")
+        return
+    task = {"name": name, "completed": False}
     tasks.append(task)
     save_tasks(tasks)
-    print("Task added!\n")
+    print("✅ Task added.")
 
-def list_tasks():
-    tasks = load_tasks()
+def list_tasks(tasks):
     if not tasks:
-        print("No tasks found.\n")
+        print("No tasks found.")
         return
+    print("\nYour Goals:")
     for i, task in enumerate(tasks, 1):
-        print(f"{i}. {task['title']}")
+        status = "✅" if task.get("completed") else "❌"
+        print(f"{i}. {task['name']} [{status}]")
     print()
 
-def search_tasks():
-    keyword = input("Enter search keyword: ").lower()
-    tasks = load_tasks()
-    matches = [t for t in tasks if keyword in t["title"].lower()]
-    if not matches:
-        print("No matching tasks found.\n")
-        return
-    print("Matches:")
-    for i, task in enumerate(matches, 1):
-        print(f"{i}. {task['title']}")
-    print()
+def edit_task(tasks):
+    list_tasks(tasks)
+    try:
+        idx = int(input("Enter task number to edit: ")) - 1
+        if idx < 0 or idx >= len(tasks):
+            print("Invalid number.")
+            return
+        new_name = input("Enter new task name: ").strip()
+        if new_name:
+            tasks[idx]["name"] = new_name
+            save_tasks(tasks)
+            print("✏️ Task updated.")
+        else:
+            print("Task name cannot be empty.")
+    except ValueError:
+        print("Please enter a valid number.")
+
+def delete_task(tasks):
+    list_tasks(tasks)
+    try:
+        idx = int(input("Enter task number to delete: ")) - 1
+        if idx < 0 or idx >= len(tasks):
+            print("Invalid number.")
+            return
+        removed = tasks.pop(idx)
+        save_tasks(tasks)
+        print(f"🗑️ Deleted: {removed['name']}")
+    except ValueError:
+        print("Please enter a valid number.")
+
+def complete_task(tasks):
+    list_tasks(tasks)
+    try:
+        idx = int(input("Enter task number to mark complete: ")) - 1
+        if idx < 0 or idx >= len(tasks):
+            print("Invalid number.")
+            return
+        tasks[idx]["completed"] = True
+        save_tasks(tasks)
+        print(f"🏁 Marked complete: {tasks[idx]['name']}")
+    except ValueError:
+        print("Please enter a valid number.")
 
 def main():
+    tasks = load_tasks()
     while True:
-        print("Options: add | list | search | exit")
-        command = input("> ").strip().lower()
+        print("Options: add | list | edit | delete | complete | exit")
+        cmd = input("> ").strip().lower()
 
-        if command == "add":
-            add_task()
-        elif command == "list":
-            list_tasks()
-        elif command == "search":
-            search_tasks()
-        elif command == "exit":
+        if cmd == "add":
+            add_task(tasks)
+        elif cmd == "list":
+            list_tasks(tasks)
+        elif cmd == "edit":
+            edit_task(tasks)
+        elif cmd == "delete":
+            delete_task(tasks)
+        elif cmd == "complete":
+            complete_task(tasks)
+        elif cmd == "exit":
             print("Goodbye!")
             break
         else:
-            print("Invalid command. Try again.\n")
+            print("Unknown command.")
 
 if __name__ == "__main__":
     main()
