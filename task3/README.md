@@ -20,19 +20,19 @@ Exit close
 
    Updated ReadMe.md for task3
 
-6. Click **Commit changes**.
+6. Click Commit changes.
 
 Step 2 — Edit main.py on GitHub
 
 1. In the task3 folder, click main.py.
 2. Click the pencil icon .
-3. Delete all the old code and **paste in the enhanced Task 3 code I gave earlier (with add/edit/delete/complete features).  
+3. Delete all the old code and paste in the enhanced Task 3 code I gave earlier (with add/edit/delete/complete features).  
 4. Scroll down, add a commit message like
 Updated main.py for task3 add edit/delete/complete
 
 5. Commit changes
 
-Now go back to Terminal (still on your Mac) to **run the updated code**:
+Now go back to Terminal to run the updated code:
 
 bash
 cd ~/Desktop/csc-299-project/task3
