@@ -1,2 +1,0 @@
-[console_scripts]
-tasks5 = tasks5.main:main

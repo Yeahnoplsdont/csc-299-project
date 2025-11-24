@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-src/tasks5/__init__.py
-src/tasks5/main.py
-src/tasks5.egg-info/PKG-INFO
-src/tasks5.egg-info/SOURCES.txt
-src/tasks5.egg-info/dependency_links.txt
-src/tasks5.egg-info/entry_points.txt
-src/tasks5.egg-info/top_level.txt
