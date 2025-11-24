@@ -7,9 +7,7 @@ A simple terminal-based homework task manager. Tasks are stored in a JSON file b
 Run inside repo root:
 
 ```bash
-cd ~/Desktop/csc-299-project/final_project
-source .venv/bin/activate
-export PYTHONPATH=/Users/alanbadillo/Desktop/csc-299-project/final_project/src
+
 
 
 # add a task
