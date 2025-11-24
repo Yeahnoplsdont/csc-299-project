@@ -1,5 +1,5 @@
 import argparse
-from .tasks import add_task, list_tasks
+from .tasks import add_task, list_tasks, remove_task
 from .ai_client import summarize_task_text
 
 def main(argv=None):
@@ -15,7 +15,10 @@ def main(argv=None):
     sub.add_parser("list", help="List tasks")
 
     sub.add_parser("summaries", help="Print AI summaries for tasks")
-
+    
+    remove = sub.add_parser("remove", help="Remove a task by title")
+    remove.add_argument("--title", required =True)
+    
     args = parser.parse_args(argv)
 
     if args.cmd == "add":
@@ -36,6 +39,14 @@ def main(argv=None):
         for i, t in enumerate(tasks, 1):
             summary = summarize_task_text(t.get("description", "") or t.get("title", ""))
             print(f"{i}. {t.get('title')} -> {summary}")
+
+    elif args.cmd == "remove":
+        success = remove_task(args.title)
+        if success:
+            print(f"Removed task: {args.title}")
+        else:
+            print(f"No task found with title: {args.title}")
+
     else:
         parser.print_help()
 
