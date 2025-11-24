@@ -24,3 +24,15 @@ def add_task(title: str, course: str, due: str, description: str) -> Dict:
 
 def list_tasks() -> List[Dict]:
     return load_tasks()
+    
+def remove_task(title):
+    """Remove task"""
+    tasks = load_tasks()
+    updated = [t for t in tasks if t["title"] != title]
+
+    if len(updated) == len(tasks):
+        return False
+
+    save_tasks(updated)
+    return True
+
