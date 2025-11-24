@@ -1,4 +1,4 @@
-I iteratively designed the application using an AI-coding assistant (ChatGPT) for high-level planning, code examples, and debugging help. I used ChatGPT primarily in three modes:
+I  designed the application using an AI-coding assistant (ChatGPT) for high-level planning, code examples, and debugging help. I used ChatGPT primarily in three modes:
 
 1. **Planner / spec writer** — I described required features and asked ChatGPT to produce a minimal specification and an example command-line usage pattern. This produced a simple `add/list/summaries` CLI contract which I then implemented.
 2. **Code generation** — For small, well-scoped functions (task storage, JSON load/save, small CLI wiring, and an OpenAI wrapper) I asked ChatGPT for code templates and then adapted them. This accelerated boilerplate creation.
